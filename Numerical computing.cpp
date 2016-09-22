@@ -16,7 +16,7 @@ vi prime(int a){
     }
     return prime;
 }
-//Input: A number a
+//Input: Number A
 //Output: All prime vector array smaller than A
 //Note: This should not be submitted since the complexity is terrible
 
