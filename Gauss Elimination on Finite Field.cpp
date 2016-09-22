@@ -2,7 +2,7 @@
 #include <vector>
 #include <math.h>
 #include "memory.h"
-#define prime 11
+#define prime 4999999
 #define MAXN 10
 
 using namespace std;
@@ -46,7 +46,13 @@ lli inverse(lli base,lli power=prime-2){
 void printboard(){
     for(lli i=0;i<V;++i){
         for(lli j=0;j<V;++j)
-            printf("%4lld ",M[i][j]);
+            printf("%7lld ",M[i][j]);
+        printf("\n");
+    }
+    printf(" | ");
+    for(lli i=0;i<V;++i){
+        for(lli j=0;j<V;++j)
+            printf("%7lld ",I[i][j]);
         printf("\n");
     }
     printf("\n");
@@ -81,19 +87,6 @@ void GaussEllimination(){
 
 
 int main(){
-    /*int E,u,v;
-    scanf("%d%d",&V,&E);
-    for(int i=0;i<V;++i) adj[i].clear();
-    while (E--) {
-        scanf("%d%d",&u,&v); --u; --v;
-        adj[u].push_back(v),
-        adj[v].push_back(u);
-    }
-    
-    memset(match, -1, V*sizeof(int));
-    memset(Flower, -1, V*sizeof(int));
-    memset(pa, -1, V*sizeof(int));
-    */
 
     Input();
     printboard();
