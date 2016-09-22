@@ -1,8 +1,21 @@
 #include <utility>
+#include <iostream>
+#include "math.h"
+#include <vector>
 using namespace std;
 
 typedef long long int lli;
 typedef pair<int,int > ii;
+typedef vector<int > vi;
+vi prime(int a){
+    vi prime(0);
+    for(int i=2;i<a;++i){
+        bool ok=1;
+        for(int p:prime)if(i%p==0||p>(1+sqrt(a))){ok=i%p;break;}
+        if(ok)prime.push_back(i);
+    }
+    return prime;
+}
 
 ii gcd(int a,int b){
     if(a%b==0)return ii(0,1);
