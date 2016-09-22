@@ -16,6 +16,9 @@ vi prime(int a){
     }
     return prime;
 }
+//Input: A number a
+//Output: All prime vector array smaller than A
+//Note: This should not be submitted since the complexity is terrible
 
 ii gcd(int a,int b){
     if(a%b==0)return ii(0,1);
