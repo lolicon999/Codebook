@@ -2,7 +2,7 @@
 #include <vector>
 #include <math.h>
 #include "memory.h"
-#define prime 1069
+#define prime 4999999
 #define MAXN 1000
 
 using namespace std;
