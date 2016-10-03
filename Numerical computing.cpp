@@ -29,7 +29,7 @@ ii gcd(int a,int b){
 }
 #define prime 4999999
 int inverse(int base){
-    return gcd(base,prime).first;//用gcd() 扣的簡潔有力又不拖泥帶水！！！
+    return (gcd(base,prime).first+prime)%prime;//用gcd() 扣的簡潔有力又不拖泥帶水！！！
 }
 
 //Input: two integer a,b
