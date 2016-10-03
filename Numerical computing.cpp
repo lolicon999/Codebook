@@ -27,6 +27,11 @@ ii gcd(int a,int b){
         return ii(d.second,d.first-a/b*d.second);
     }
 }
+#define prime 4999999
+int inverse(int base){
+    return gcd(base,prime).first;//用gcd() 扣的簡潔有力又不拖泥帶水！！！
+}
+
 //Input: two integer a,b
 //Output: x,y in the font of pair<int,int> s.t. ax+by=gcd(a,b)
 
