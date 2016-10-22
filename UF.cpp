@@ -1,4 +1,5 @@
 #define MAXN 1000000
+int P[MAXN],R[MAXN];
 int parent(int p){
     if(P[p]==p)return p;
     else return P[p]=parent(P[p]);
