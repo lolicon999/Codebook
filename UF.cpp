@@ -5,7 +5,7 @@ int parent(int p){
     else return P[p]=parent(P[p]);
 }
 inline void UN(int a,int b){
-    if(P[parent(a)]<R[parent(b)])P[a]=P[b];
+    if(R[parent(a)]<R[parent(b)])P[a]=P[b];
     else{
         R[P[b]]+=R[P[a]]==R[P[b]];
         P[b]=P[a];
