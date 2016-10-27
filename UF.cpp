@@ -1,12 +1,12 @@
-#define MAXN 1000000
-int P[MAXN],R[MAXN];
-int parent(int p){
-    if(P[p]==p)return p;
-    else return P[p]=parent(P[p]);
+#define MAXN 100000
+int p[MAXN],r[MAXN];
+int parent(int i){
+    if(p[i]==i)return i;
+    else return p[i]=parent(p[i]);
 }
 inline void UN(int a,int b){
     int A=parent(a),B=parent(b);
     if(A==B) return;
-    if(R[A]<R[B]){P[A]=P[B];}
-    else R[A]+=R[A]==R[B],P[B]=P[A];
+    if(r[A]<r[B]){p[A]=p[B];}
+    else r[A]+=r[A]==r[B],p[B]=p[A];
 }
