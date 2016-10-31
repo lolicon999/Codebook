@@ -34,3 +34,21 @@ ll CRT(vector<ii> &prob){
 }
 //try vector<ii>{ii(2,3),ii(3,5),ii(6,7)};
 //i.e. find minimum number of : 2(mod 3),3(mod 5),6(mod 7)
+ll table[]={2,3,5,7,11,13,17,19,23,29,31,37};
+
+ll isprime(ll k){//1 then true, other than factorial
+    for(ll p: table){
+        if(k==p)return 1;
+        else if (!(k%p)) return 0;
+    }
+    ll d=k-1,q=0;while(!(d%2))d/=2,++q;
+    for(ll p: table){
+        bool ct=0;
+        ll t=pmod(p, d, k);
+        if(t==1)continue;
+        for(ll r=0;r<q;++r,t=t*t%k)if(t==k-1){ct=1;break;}
+        if(ct||t==k-1)continue;
+        return 0;
+    }
+    return 1;
+}
