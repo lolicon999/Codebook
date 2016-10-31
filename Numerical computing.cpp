@@ -43,11 +43,10 @@ ll isprime(ll k){//1 then true, other than factorial
     }
     ll d=k-1,q=0;while(!(d%2))d/=2,++q;
     for(ll p: table){
-        bool ct=0;
-        ll t=pmod(p, d, k);
+        ll t=pmod(p, d, k),r=0;
         if(t==1)continue;
-        for(ll r=0;r<q;++r,t=t*t%k)if(t==k-1){ct=1;break;}
-        if(ct||t==k-1)continue;
+        for(;r<q;++r,t=t*t%k)if(t==k-1)break;
+        if(t==k-1)continue;
         return 0;
     }
     return 1;
