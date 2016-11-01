@@ -56,7 +56,6 @@ ll rho(ll C){//就有些要求來說，rho太慢了
         if(d>1 && d<C) return d;
     }
     return rho(C);
-    return 0;
 }
 
 ll isprime(ll k){//1 then true, other than factorial
