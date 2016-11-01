@@ -12,6 +12,9 @@ ii gcd(ll a,ll b){
     return ii(d.s,d.f-a/b*d.s);
 }
 
+
+ll inverse(ll b,ll p){return (gcd(b,p).f+p)%p;}
+
 ll inverse(ll b,ll p){return (gcd(b,p).f+p)%p;}
 
 //Input: two integer a,b
@@ -29,11 +32,17 @@ ll pmod(ll b,ll p,ll m){
 ll CRT(vector<ii> &prob){
     ll tmod=1,sol=0;
     for(ii a: prob) tmod*=a.s;//這裡會溢位
+=======
+    for(ii a: prob) tmod*=a.s;
+
+    for(ii a: prob) tmod*=a.s;
+
     for(ii a: prob) sol=(sol+a.f*inverse(tmod/a.s,a.s)*tmod/a.s)%tmod;
     return sol;
 }
 //try vector<ii>{ii(2,3),ii(3,5),ii(6,7)};
 //i.e. find minimum number of : 2(mod 3),3(mod 5),6(mod 7)
+
 ll table[]={2,3,5,7,11,13,17,19,23,29,31,37};
 
 ll isprime(ll k){//1 then true, other than factorial
@@ -51,3 +60,9 @@ ll isprime(ll k){//1 then true, other than factorial
     }
     return 1;
 }
+=======
+
+>>>>>>> master
+=======
+
+>>>>>>> master
