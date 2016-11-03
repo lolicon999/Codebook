@@ -9,9 +9,9 @@ using namespace std;
 typedef long long int ll;
 typedef pair<ll, ll> ii;
 ll mul(ll a,ll b,ll m){
-    if((a<INT_MAX && b<INT_MAX)||a<10||b<10)return a*b%m;
-    ll sa=a/2,r=a%2,sb=b/2,k=b%2;
-    return (4*mul(sa,sb,m)+2*k*sa+2*r*sb+r*k)%m;
+    if((a<INT_MAX && b<INT_MAX)||a<100||b<100)return a*b%m;
+    ll sa=a/10,r=a%10,sb=b/10,k=b%10;
+    return (100*mul(sa,sb,m)+10*k*sa+10*r*sb+r*k)%m;
     
 }
 ii gcd(ll a,ll b){
