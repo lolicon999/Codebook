@@ -1,4 +1,3 @@
-#include <iostream>
 #include <utility>
 #include <stack>
 using namespace std;
@@ -19,17 +18,4 @@ int LCS(int i,int j){
     }
         path[i][j]=ii(i-1,j);
         return DP[i][j]=LCS(i-1, j);
-}
-
-int main(){
-    for(int i=0;i<50;++i)for(int j=0;j<50;++j)DP[i][j]=-1;
-    cin>>a>>b;
-    cout<<LCS(a.size()-1,b.size()-1)<<'\n';
-    int i=a.size()-1,j=b.size()-1;
-    stack<char> st;
-    while(i!=-1||j!=-1){
-        if(a[i]==b[j])st.push(a[i]);
-        ii p=path[i][j];i=p.first,j=p.second;
-    }
-    while (!st.empty()) {printf("%c",st.top());st.pop();}
 }
