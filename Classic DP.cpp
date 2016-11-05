@@ -34,6 +34,7 @@ int LMS(int n){
     }
     return length[n]=max;
 }
+//maxium increasing subsequence containing s[n]
 void back(int n){
     if(pa[n]!=n)back(pa[n]);
     printf("%d ",s[n]);
