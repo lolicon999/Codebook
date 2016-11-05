@@ -29,7 +29,7 @@ void GaussElimination(){//O(n^3)
             if(i==k)continue;
             mul=S[i][k]%p;
             FL(j, 0, N)
-            S[i][j]=(p+S[i][j]-mul*S[k][j]%p)%p,I[i][j]=(p+I[i][j]-mul*I[k][j]%p)%p;
+                S[i][j]=(p+S[i][j]-mul*S[k][j]%p)%p,I[i][j]=(p+I[i][j]-mul*I[k][j]%p)%p;
         }
     }
 }
