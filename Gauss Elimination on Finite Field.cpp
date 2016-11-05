@@ -1,102 +1,44 @@
 #include <iostream>
-#include <vector>
-#include <math.h>
-#include "memory.h"
-#define prime 4999999
-#define MAXN 10
-
+#include <utility>
+#define f first
+#define s second
+#define N 10
+#define p 4999999
+#define FL(i,j,k) for(int i=j;i<k;++i)
 using namespace std;
-typedef vector<int> vi;
-typedef long long int lli;
+typedef long long int ll;
+typedef pair<ll , ll> ii;
 
-/*int V,ans=0,match[MAXN],Flower[MAXN],S[MAXN],vis[MAXN];
+ii gcd(ll a,ll b){
+    if(!(a%b))return ii(0,1);
+    ii d=gcd(b, a%b);
+    return ii(d.s,d.f-a/b*d.s);
+}
+inline ll inverse(ll b,ll pr=p){return (gcd(b,pr).f+pr)%pr;}
 
-//4,999,999 is the 348513rd prime number.*/
 
-int V,E;
-lli M[MAXN][MAXN],I[MAXN][MAXN];
-
-void Input(){
-    scanf("%d%d",&V,&E);
-    for(int i=0;i<E;++i){
-        int u,v;
-        scanf("%d%d",&u,&v);--u,--v;
-        M[u][v]=rand()%prime;
-        M[v][u]=prime-M[u][v];
-    }
-    for(int i=0;i<V;++i){
-        for(int j=0;j<V;++j){
-            I[i][j]=i==j;
+ll M[N][N],I[N][N];//matrix, inverse
+void GaussElimination(){//O(n^3)
+    ll S[N][N];FL(i,0,N)FL(j,0,N)S[i][j]=M[i][j],I[i][j]=i==j;//define & copy
+    FL(k,0,N){
+        ll mul;
+        int a=k;while(S[a][k]==0)++a;swap(S[k],S[a]);swap(I[k], I[a]);
+        mul=inverse(S[k][k]);
+        FL(i, 0, N)S[k][i]=S[k][i]*mul%p,I[k][i]=I[k][i]*mul%p;
+        FL(i,0,N){//如果只做triangluar的話可以從k開始
+            if(i==k)continue;
+            mul=S[i][k]%p;
+            FL(j, 0, N)
+            S[i][j]=(p+S[i][j]-mul*S[k][j]%p)%p,I[i][j]=(p+I[i][j]-mul*I[k][j]%p)%p;
         }
     }
 }
 
-lli inverse(lli base,lli power=prime-2){
-    static lli dp[prime]={0};
-    if(dp[base]) return dp[base];
-    if( power==0 ) return 1;
-    else{
-        lli ans=inverse(base, power/2);
-        ans=(ans*ans)%prime*(power%2?base:1);
-        dp[base]=ans%prime;
-        return dp[base];
-    }
-}
-
-void printboard(){
-    for(lli i=0;i<V;++i){
-        for(lli j=0;j<V;++j)
-            printf("%7lld ",M[i][j]);
-        printf("\n");
-    }
-    printf(" | ");
-    for(lli i=0;i<V;++i){
-        for(lli j=0;j<V;++j)
-            printf("%7lld ",I[i][j]);
-        printf("\n");
-    }
-    printf("\n");
-}
-
-
-void GaussEllimination(){
-    /*lli stay[V][V];
-    for(int i=0;i<V;++i)for(int j=0;j<V;++j) stay[i][j]=M[i][j],I[i][j]=i==j;;//duplication*/
-    for(int k=0;k<V;++k){
-        for(int i=k;i<V;++i){//The for loop will only excute O(V)
-            if(M[i][k]!=0){
-                for(int j=0;j<V;++j) swap(M[i][j], M[k][j]),swap(I[i][j], I[k][j]);//O(V)
-                for(int j=0;j<V;++j){
-                    if(j==k)continue;
-                    int mul=(prime-M[j][k])*inverse(M[k][k])%prime;
-                    for(int h=0;h<V;++h){
-                        M[j][h]+=(M[k][h]*mul)%prime,
-                        M[j][h]%=prime;
-                        I[j][h]+=(I[k][h]*mul)%prime,
-                        I[j][h]%=prime;
-                    }
-                }break;
-            }
-        }
-        int mul=inverse(M[k][k])%prime;
-        for(int h=0;h<V;++h){
-            M[k][h]=mul*M[k][h]%prime,I[k][h]=mul*I[k][h]%prime;
-        }
-    }
-}
-
-
+//Run this amazing Input :-D
 int main(){
-
-    Input();
-    printboard();
-    printf("\n");
-    GaussEllimination();
-    printboard();
-    printf("\n");
-    for(int i=0;i<V;++i){
-        
-    }
-
-    
+    FL(i, 0, 10)FL(j, 0, 10)M[i][j]=rand()%p;
+    GaussElimination();
+    ll PDT[N][N]={0};
+    FL(i,0,10)FL(j, 0, 10)FL(k, 0, 10) PDT[i][j]+=M[i][k]*I[k][j];
+    FL(i,0,10){FL(j, 0, 10) printf("%2lld ",PDT[i][j]%p);printf("\n");}
 }
